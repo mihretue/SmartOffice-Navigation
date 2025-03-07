@@ -6,6 +6,7 @@ import { FaHome, FaFileAlt, FaFolderOpen, FaChartBar, FaProjectDiagram, FaWpform
 import { FiExternalLink, FiMessageSquare } from "react-icons/fi"; // Import new icons
 import Card from "@/components/ui/card";
 
+
 export default function Navbar() {
   const [isCardVisible, setIsCardVisible] = useState(false);
 
@@ -19,7 +20,7 @@ export default function Navbar() {
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList className="flex space-x-6 items-center">
             <NavigationMenuItem>
-              <a href="/" className="text-lg font-medium text-white bg-[#009688] px-4 py-2 rounded-md hover:bg-[#00796b]">Home</a>
+              <a href="/" className="text-lg font-medium text-white bg-[#009688] px-4 py-2 rounded-md hover:bg-[#264441]">Home</a>
             </NavigationMenuItem>
 
             <DropdownMenu>
@@ -58,7 +59,7 @@ export default function Navbar() {
             </DropdownMenu>
 
             <NavigationMenuItem>
-              <a href="/public-website" className="text-lg text-black hover:text-[#009688] flex items-center">
+              <a href="/public-website" className="text-lg hover:text-[#009688] flex items-center">
                 Public Website <FiExternalLink className="ml-1" />
               </a>
             </NavigationMenuItem>
@@ -72,7 +73,7 @@ export default function Navbar() {
         </NavigationMenu>
 
         <div className="flex items-center gap-x-4">
-          <div className="relative cursor-pointer" onClick={toggleCard}>
+          <div className="relative cursor-pointer" onMouseEnter={toggleCard}>
             <Bell className="w-6 h-6 text-gray-500 hover:text-[#009688]" />
             <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
               1
@@ -116,10 +117,14 @@ export default function Navbar() {
       </nav>
 
       {isCardVisible && (
-        <div className="absolute right-2 top-16 z-20">
+        <div className="absolute right-2 top-16 z-20 max-h-32 overflow-auto">
           <Card onClose={toggleCard} />
         </div>
       )}
+
+      <footer className="fixed bottom-0 left-0 right-0 h-16 bg-[#009688] text-center py-4">
+        <p className="text-sm text-white">&copy; 2023 Smart Office Navigation</p>
+      </footer>
     </div>
   );
 }
