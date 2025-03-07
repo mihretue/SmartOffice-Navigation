@@ -123,7 +123,7 @@ export default function Navbar() {
       )}
 
       <footer className="fixed bottom-0 left-0 right-0 h-16 bg-[#009688] text-center py-4">
-        <p className="text-sm text-white">&copy; 2023 Smart Office Navigation</p>
+        <p className="text-sm text-white">&copy; 2023 Smart Office</p>
       </footer>
     </div>
   );
