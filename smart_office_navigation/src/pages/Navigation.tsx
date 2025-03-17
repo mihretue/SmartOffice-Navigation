@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from "@/components/ui/navigation-menu";
 import { Bell } from "lucide-react";
@@ -7,12 +7,51 @@ import { FiExternalLink, FiMessageSquare } from "react-icons/fi"; // Import new 
 import Card from "@/components/ui/card";
 import Footer from '@/components/ui/Footer';
 
+interface MenuItem {
+  id: number;
+  name: string;
+  path: string;
+}
+
+interface Module {
+  id: number;
+  name: string;
+  path: string;
+  icon: string;
+}
 
 export default function Navbar() {
   const [isCardVisible, setIsCardVisible] = useState(false);
+  const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+  const [modules, setModules] = useState<Module[]>([]);
+
+  useEffect(() => {
+    fetch('/navData.json')
+      .then(response => response.json())
+      .then((data: { menuItems: MenuItem[]; modules: Module[] }) => {
+        const filteredMenuItems = data.menuItems.filter((item: MenuItem) =>
+          item.name !== "Public Website" && item.name !== "Smart Chat"
+        );
+        setMenuItems(filteredMenuItems);
+        setModules(data.modules);
+      })
+      .catch(error => console.error('Error fetching navigation data:', error));
+  }, []);
 
   const toggleCard = () => {
     setIsCardVisible(!isCardVisible);
+  };
+
+  const renderIcon = (iconName: string) => {
+    switch (iconName) {
+      case 'FaHome': return <FaHome className="mr-2" />;
+      case 'FaFileAlt': return <FaFileAlt className="mr-2" />;
+      case 'FaFolderOpen': return <FaFolderOpen className="mr-2" />;
+      case 'FaChartBar': return <FaChartBar className="mr-2" />;
+      case 'FaProjectDiagram': return <FaProjectDiagram className="mr-2" />;
+      case 'FaWpforms': return <FaWpforms className="mr-2" />;
+      default: return null;
+    }
   };
 
   return (
@@ -32,30 +71,12 @@ export default function Navbar() {
                 </svg>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-white text-black shadow-md rounded-lg p-1 border border-gray-200 min-w-[200px]">
-                <DropdownMenuItem className="px-3 py-2 hover:bg-gray-50 rounded-md cursor-pointer flex items-center">
-                  <FaHome className="mr-2" />
-                  <a href="/record-management" className="text-black hover:text-[#009688] w-full">Record Management</a>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="px-3 py-2 hover:bg-gray-50 rounded-md cursor-pointer flex items-center">
-                  <FaFileAlt className="mr-2" />
-                  <a href="/document-management" className="text-black hover:text-[#009688] w-full">Document Management</a>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="px-3 py-2 hover:bg-gray-50 rounded-md cursor-pointer flex items-center">
-                  <FaFolderOpen className="mr-2" />
-                  <a href="/knowledge-digital-assets" className="text-black hover:text-[#009688] w-full">Knowledge Management</a>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="px-3 py-2 hover:bg-gray-50 rounded-md cursor-pointer flex items-center">
-                  <FaChartBar className="mr-2" />
-                  <a href="/report-management" className="text-black hover:text-[#009688] w-full">Report Management</a>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="px-3 py-2 hover:bg-gray-50 rounded-md cursor-pointer flex items-center">
-                  <FaProjectDiagram className="mr-2" />
-                  <a href="/project-management" className="text-black hover:text-[#009688] w-full">Project Management</a>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="px-3 py-2 hover:bg-gray-50 rounded-md cursor-pointer flex items-center">
-                  <FaWpforms className="mr-2" />
-                  <a href="/forms" className="text-black hover:text-[#009688] w-full">Forms</a>
-                </DropdownMenuItem>
+                {modules.map((module) => (
+                  <DropdownMenuItem key={module.id} className="px-3 py-2 hover:bg-gray-50 rounded-md cursor-pointer flex items-center">
+                    {renderIcon(module.icon)}
+                    <a href={module.path} className="text-black hover:text-[#009688] w-full">{module.name}</a>
+                  </DropdownMenuItem>
+                ))}
               </DropdownMenuContent>
             </DropdownMenu>
 
