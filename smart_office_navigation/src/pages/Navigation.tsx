@@ -24,6 +24,7 @@ export default function Navbar() {
   const [isCardVisible, setIsCardVisible] = useState(false);
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [modules, setModules] = useState<Module[]>([]);
+  const [isModuleOpen, setIsModuleOpen] = useState(false);
 
   useEffect(() => {
     fetch('/navData.json')
@@ -63,21 +64,26 @@ export default function Navbar() {
               <a href="/" className="text-lg font-medium text-white bg-[#009688] px-4 py-2 rounded-md hover:bg-[#264441]">Home</a>
             </NavigationMenuItem>
 
-            <DropdownMenu>
-              <DropdownMenuTrigger className="inline-flex items-center justify-center px-4 py-2 bg-[#009688] text-white rounded-md hover:bg-[#00796b] focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all duration-200">
-                <span className="text-base font-medium">Modules</span>
-                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-                </svg>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-white text-black shadow-md rounded-lg p-1 border border-gray-200 min-w-[200px]">
-                {modules.map((module) => (
-                  <DropdownMenuItem key={module.id} className="px-3 py-2 hover:bg-gray-50 rounded-md cursor-pointer flex items-center">
-                    {renderIcon(module.icon)}
-                    <a href={module.path} className="text-black hover:text-[#009688] w-full">{module.name}</a>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
+            <DropdownMenu open={isModuleOpen} onOpenChange={setIsModuleOpen}>
+              <div
+                onMouseEnter={() => setIsModuleOpen(true)}
+                onMouseLeave={() => setIsModuleOpen(false)}
+              >
+                <DropdownMenuTrigger className="inline-flex items-center justify-center px-4 py-2 bg-[#009688] text-white rounded-md hover:bg-[#00796b] focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all duration-200">
+                  <span className="text-base font-medium">Modules</span>
+                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-white text-black shadow-md rounded-lg p-1 border border-gray-200 min-w-[200px]">
+                  {modules.map((module) => (
+                    <DropdownMenuItem key={module.id} className="px-3 py-2 hover:bg-gray-50 rounded-md cursor-pointer flex items-center">
+                      {renderIcon(module.icon)}
+                      <a href={module.path} className="text-black hover:text-[#009688] w-full">{module.name}</a>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </div>
             </DropdownMenu>
 
             <NavigationMenuItem>
