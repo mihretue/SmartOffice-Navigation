@@ -1,0 +1,8 @@
+{
+    "links": [
+      { "id": 1, "name": "email", "path": "/email" },
+      { "id": 2, "name": "phone number", "path": "/phone number" },
+      { "id": 3, "name": "location", "path": "/location" }
+    ],
+    "copyright": "አይቲዲቢ - የቅጂ መብት © {new Date().getFullYear()} 2024 ሁሉም መብቶች የተጠበቁ ናቸው - በ አይቲዲቢ የበለጸገ"
+  }

@@ -1,0 +1,16 @@
+{
+    "menuItems": [
+      { "id": 1, "name": "Home", "path": "/" },
+      { "id": 2, "name": "Public Website", "path": "/public-website", "icon": "FiExternalLink" },
+      { "id": 3, "name": "Smart Chat", "path": "/smart-chat", "icon": "FiMessageSquare" }
+    ],
+    "modules": [
+      { "id": 1, "name": "Record Management", "path": "/record-management", "icon": "FaHome" },
+      { "id": 2, "name": "Document Management", "path": "/document-management", "icon": "FaFileAlt" },
+      { "id": 3, "name": "Knowledge Management", "path": "/knowledge-digital-assets", "icon": "FaFolderOpen" },
+      { "id": 4, "name": "Report Management", "path": "/report-management", "icon": "FaChartBar" },
+      { "id": 5, "name": "Project Management", "path": "/project-management", "icon": "FaProjectDiagram" },
+      { "id": 6, "name": "Forms", "path": "/forms", "icon": "FaWpforms" }
+    ]
+  }
+  

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from "@/components/ui/navigation-menu";
-import { Menu, Bell } from "lucide-react";
+import { Bell } from "lucide-react";
 import { FaHome, FaFileAlt, FaFolderOpen, FaChartBar, FaProjectDiagram, FaWpforms } from "react-icons/fa";
 import { FiExternalLink, FiMessageSquare } from "react-icons/fi"; // Import new icons
 import Card from "@/components/ui/card";
