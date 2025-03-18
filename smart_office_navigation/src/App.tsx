@@ -3,17 +3,16 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
-import Navbar from './pages/Navigation'
-const Home = () => <div><h1>Home Page</h1></div>;
+
+// const Home = () => <div><h1>Home Page</h1></div>;
 const About = () => <div><h1>About Page</h1></div>;
 const Services = () => <div><h1>Services Page</h1></div>;
 const Contact = () => <div><h1>Contact Page</h1></div>;
 
+import Home from "./pages/landingPage/home"
 const App = () => {
   return (
-    <Router>
-      <Navbar /> {/* Include Navbar component */}
-      
+    <Router>      
       {/* Define routes */}
       <Routes>
         <Route path="/" element={<Home />} />

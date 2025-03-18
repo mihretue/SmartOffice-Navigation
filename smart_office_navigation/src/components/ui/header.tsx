@@ -4,7 +4,7 @@ import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from "@/compon
 import { Bell } from "lucide-react";
 import { FaHome, FaFileAlt, FaFolderOpen, FaChartBar, FaProjectDiagram, FaWpforms } from "react-icons/fa";
 import { FiExternalLink, FiMessageSquare } from "react-icons/fi"; // Import new icons
-import Card from "../components/ui/card";
+import Card from "@/components/ui/card";
 // import Footer from '@/components/ui/Footer';
 
 interface MenuItem {
